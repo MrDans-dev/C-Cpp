@@ -77,6 +77,16 @@ void shop(int price, float stamina_pkt)
 	}
 }
 
+void work(int money_e , int stam)
+{
+	if((stamina-stam)>=0)
+	{
+		money+=money_e;
+		stamina-=stam;
+	}
+	else not_enought_stamina();
+}
+
 int main()
 {	
 	int opcja=0,day=0;
@@ -96,7 +106,7 @@ int main()
 				system("cls");
 				stats(day , (int)stamina , money);
 				printf("1.Klata -10pkt +5xp.\n2.Bicek -5pkt +2xp.\n3.Nogi -20pkt. +10xp\n4.Cardio -10pkt. +5xp\n\n5.Powrot\n");
-				printf("Wybor: s"); scanf("%i",&opcja);
+				printf("Wybor: "); scanf("%i",&opcja);
 				switch(opcja)
 				{
 					case 1:
@@ -133,7 +143,7 @@ int main()
 				{
 					system("cls");
 					stats(day , (int)stamina , money);
-					printf("1.Bia³ko +20pkt. -40$\n\n2.Powrot\n");
+					printf("1.Bialko +20pkt. -40$\n\n2.Powrot\n");
 					printf("Wybor: "); scanf("%i",&opcja);
 					switch(opcja)
 					{
@@ -159,6 +169,31 @@ int main()
 			}
 		case 4:
 			{
+				while(przerwa==0)
+				{
+				system("cls");
+				stats(day , (int)stamina , money);
+				printf("1.Dostwca Pizzy +25$ -30pkt.\n2.Rozdawanie ulotek +10$ -10pkt.\n\n3.Powrot\n");
+				printf("Wybor: "); scanf("%i",&opcja);
+				switch(opcja)
+				{
+					case 1:
+						{
+							work(25,30);
+							break;
+						}
+					case 2:
+						{
+							work(10,10);
+							break;
+						}
+					case 3:
+						{
+							przerwa=1;
+							break;
+						}
+				}
+				}
 				break;
 			}
 		case 5:
