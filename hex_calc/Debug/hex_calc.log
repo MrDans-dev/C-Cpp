@@ -1,0 +1,4 @@
+﻿  hex_calc.cpp
+F:\Projekty\hex_calc\hex_calc.cpp(30,17): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+F:\Projekty\hex_calc\hex_calc.cpp(36,32): warning C4244: "+=": konwersja z "double" do "int", możliwa utrata danych
+  hex_calc.vcxproj -> F:\Projekty\hex_calc\Debug\hex_calc.exe
