@@ -1,0 +1,6 @@
+﻿  hex_calc.cpp
+F:\Projekty\C-Cpp\hex_calc\hex_calc.cpp(26,25): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+F:\Projekty\C-Cpp\hex_calc\hex_calc.cpp(49,25): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+F:\Projekty\C-Cpp\hex_calc\hex_calc.cpp(55,43): warning C4244: "+=": konwersja z "double" do "int", możliwa utrata danych
+F:\Projekty\C-Cpp\hex_calc\hex_calc.cpp(65,6): warning C4101: "x": lokalna zmienna, do której nie istnieje odwołanie
+  hex_calc.vcxproj -> F:\Projekty\C-Cpp\hex_calc\x64\Debug\hex_calc.exe

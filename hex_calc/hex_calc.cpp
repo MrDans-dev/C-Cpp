@@ -20,62 +20,90 @@ vector<char> string_2_vec(string con)
 	return convered;
 }
 
+void wypisz(vector<int>t)
+{
+	int o;
+	for (int i = t.size()-1; i >=0; i--)
+	{
+		o = t[i];
+		cout << hex_list[o];
+	}
+	cout << endl;
+}
+
+int index(char n)
+{
+	for (int i = 0; i <= 15; i++)
+	{
+		if (n == hex_list[i])
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
 void hex_2_dec(string hex)
 {
 	vector<char>test = string_2_vec(hex);
-	int i, o, wynik=0, m = test.size()-1;
+	int m = test.size() - 1,wynik =0;
 	cout << "HEX " << hex << " = ";
-	for (i = 0; i <= 15; i++)
+	for (int o = 0; o < test.size(); o++)
 	{
-		for (o = 0; o < test.size(); o++)
-		{
-			if (test[o] == hex_list[i])
+		printf("(%i *16^%i)", index(test[o]), m);
+		if (m > 0) cout << " + ";
+		wynik += (index(test[o]) * (pow(16, m)));
+		m--;
+	}
+	cout << " = " << wynik << " D" << endl;
+}
+
+vector<int> reszta(int n)
+{
+	vector<int>r;
+	int temp=0;
+	while (n>=16)
+	{
+		if (n > 240)
+		{	
+			if (n % 16 == 0)
 			{
-				printf("(%i *16^%i)", i, m);
-				if (m > 0) cout << " + ";
-				wynik += (i * (pow(16, m)));
-				m--;
+				r.push_back(0);
+				n = n / 16;
 			}
+			else
+			{
+				temp = (int)n / 16;
+				r.push_back(n - (temp * 16));
+				n = temp;
+			}	
+		}
+		else
+		{
+			if (n % 16 == 0)
+			{
+				r.push_back(0);
+				r.push_back(n/16);
+				break;
+			}
+			else
+			{
+				temp = (int)(n / 16);
+				r.push_back(n - (temp * 16));
+				n = n - (temp * 16);
+			}
+			
 		}
 	}
-	cout << " = " << wynik << "D" << endl;
+	if(n <16) r.push_back(temp);
+	return r;
 }
-/*static vector<int>res;
-int reszta(int n)
-{
-	if (n == 0)
-	{
-		//res.push_back(n);
-		return 0;
-	}
-	if (n % 15 != 0)
-	{
-		res.push_back(n % 15);
-		return reszta(n - 1);
-	}
-	else
-	{
-		res.push_back(n-15);
-		return reszta(n-15);
-	}
-	for (int i = 1; i * 15 < n; i++)
-	{
-		//cout << i << "\t" << n-i << endl;
-		dziel = i;
-	}
-	
-}*/
+
 
 void dec_2_hex(int dec)
 {
-	//TODO
-	/*reszta(dec);
-	for (int i = 0; i < res.size(); i++)
-	{
-		cout << res[i] << "\t";
-	}
-	//cout << reszta[0];
-	*/
+	vector<int>r = reszta(dec);
+	wypisz(r);
 }
 
 void nr_er()
