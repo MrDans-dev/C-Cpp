@@ -43,20 +43,18 @@ int index(char n)
 	return -1;
 }
 
-void hex_2_dec(string hex)
+int hex_2_dec(string hex)
 {
 	vector<char>test = string_2_vec(hex);
 	int m = test.size() - 1,wynik =0;
-	cout << "HEX " << hex << " = ";
 	for (int o = 0; o < test.size(); o++)
 	{
-		printf("(%i *16^%i)", index(test[o]), m);
-		if (m > 0) cout << " + ";
 		wynik += (index(test[o]) * (pow(16, m)));
 		m--;
 	}
-	cout << " = " << wynik << " D" << endl;
+	return wynik;
 }
+
 
 vector<int> reszta(int n)
 {
@@ -84,6 +82,7 @@ vector<int> reszta(int n)
 			{
 				r.push_back(0);
 				r.push_back(n/16);
+				//n /= 16;
 				break;
 			}
 			else
@@ -95,7 +94,8 @@ vector<int> reszta(int n)
 			
 		}
 	}
-	if(n <16) r.push_back(temp);
+	if(n <16&&temp!=0) r.push_back(temp);
+	else if(n<=15) r.push_back(n);
 	return r;
 }
 
@@ -104,6 +104,47 @@ void dec_2_hex(int dec)
 {
 	vector<int>r = reszta(dec);
 	wypisz(r);
+}
+
+void dzialania(int op, string hex1, string hex2)
+{
+	int a = hex_2_dec(hex1);
+	int b = hex_2_dec(hex2);
+	switch (op)
+	{
+		case 1:
+		{
+			cout << endl;
+			cout << "HEX: "; dec_2_hex(a + b);
+			cout << "DEC: " << a + b;
+			break;
+		}
+		case 2:
+		{
+			cout << endl;
+			cout << "HEX: "; dec_2_hex(a - b);
+			cout << "DEC: " << a - b;
+			break;
+		}
+		case 3:
+		{
+			cout << endl;
+			cout << "HEX: "; dec_2_hex(a * b);
+			cout << "DEC: " << a * b;
+			break;
+		}
+		case 4:
+		{
+			cout << endl;
+			if (b == 0) cout << 0;
+			else
+			{
+				cout << "HEX (INT): "; dec_2_hex((int)(a/b));
+				cout << "DEC (INT): " << (int)(a/b);
+			}
+		}
+		default: break;
+	}
 }
 
 void nr_er()
@@ -130,7 +171,7 @@ int main()
 			system("cls");
 			string hex;
 			printf("Podaj liczbe Hex: "); cin >> hex;
-			hex_2_dec(hex);
+			cout << hex_2_dec(hex);
 			cout << endl;
 			system("pause");
 			system("cls");
@@ -144,6 +185,27 @@ int main()
 			dec_2_hex(dec);
 			cout << endl;
 			system("pause");
+			system("cls");
+			break;
+		}
+		case 3:
+		{
+			system("cls");
+			string hex1, hex2;
+			cout << "1.Dodawanie" << endl;
+			cout << "2.Odejmowanie" << endl;
+			cout << "3.Mnozenie" << endl;
+			cout << "4.Dzielenie" << endl<<endl;
+			cout << "Wybor: "; cin >> op;
+			if (op > 4) nr_er();
+			else
+			{
+				cout << "Pierwsza liczba hex:"; cin >> hex1;
+				cout << "Druga liczba hex:"; cin >> hex2;
+				dzialania(op, hex1, hex2);
+				cout << endl;
+				system("pause");
+			}
 			system("cls");
 			break;
 		}
